@@ -26,7 +26,7 @@ public class Journal
     public void Load()
     {
         // Prompting user for filename
-        Console.WriteLine("What is the filename?\n");
+        Console.WriteLine("What is the filename?");
         string filename = Console.ReadLine();
         string[] lines = System.IO.File.ReadAllLines(filename);
 
@@ -47,7 +47,7 @@ public class Journal
     public void Save()
     {
         // Prompting user for filename
-        Console.WriteLine("What is the filename?\n");
+        Console.WriteLine("What is the filename?");
         string fileName = Console.ReadLine();
 
         // Using StreamWriter to save changes to file

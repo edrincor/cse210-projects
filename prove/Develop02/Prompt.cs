@@ -16,7 +16,7 @@ public class Prompt
     }
 
     // Generating random prompt from list
-    public string generatePrompt()
+    public string GeneratePrompt()
     {
         Random r = new Random();
         int index = r.Next(prompts.Count);

@@ -16,7 +16,7 @@ public class Entry
     // Constructor
     public Entry(string r)
     {
-        _randomPrompt = prompts.generatePrompt();
+        _randomPrompt = prompts.GeneratePrompt();
         _date = dateTime.ToShortDateString();
         _response = r;
     }
