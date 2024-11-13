@@ -30,7 +30,7 @@ public class Journal
         string filename = Console.ReadLine();
         string[] lines = System.IO.File.ReadAllLines(filename);
 
-        // Loading file to _journalEntries
+        // Loading file and organizing into separate entries
         List<Entry> _loadedJournal = new List<Entry>();
         foreach (string line in lines)
         {
@@ -39,6 +39,7 @@ public class Journal
             _loadedJournal.Last().RandomPrompt = parts[1];
             _loadedJournal.Last().Date = parts[0];
         }
+        // Making _journalEntries == _loadedJournal
         _journalEntries.Clear();
         _journalEntries.AddRange(_loadedJournal);
     }
