@@ -39,7 +39,8 @@ public class Journal
             _loadedJournal.Last().RandomPrompt = parts[1];
             _loadedJournal.Last().Date = parts[0];
         }
-        _journalEntries = _loadedJournal;
+        _journalEntries.Clear();
+        _journalEntries.AddRange(_loadedJournal);
     }
 
     public void Save()

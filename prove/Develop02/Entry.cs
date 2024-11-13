@@ -7,7 +7,7 @@ public class Entry
     private string _date;
 
     // Random prompt
-    private Prompt prompts;
+    private Prompt prompts = new Prompt();
     private string _randomPrompt;
 
     // Response
