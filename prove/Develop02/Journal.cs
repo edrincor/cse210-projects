@@ -5,7 +5,7 @@ public class Journal
 {
     private List<Entry> _journalEntries = new List<Entry>();
 
-    // Adding Entry objects to list
+    // Adding Entry objects to _journalEntries list
     public void AddEntry()
     {
         _journalEntries.Add(new Entry(""));
