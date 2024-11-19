@@ -10,14 +10,14 @@ public class Word
 
     public void Hide()
     {
-        //_word = new string('_', _word.Length);
-        int length = _word.Length;
+        _word = new string('_', _word.Length);
+        /*int length = _word.Length;
         string hidden = "";
         for (int i = 0; i < length; i++)
         {
             hidden += "_";
         }
-        _word = hidden;
+        _word = hidden;*/
     }
 
     public string Show()
