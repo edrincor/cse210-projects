@@ -10,18 +10,21 @@ public class Scripture
     public Scripture()
     {
         _words = new List<Word>();
+
+        //Pulls list of scriptures from file and picks one at random
         string[] lines = System.IO.File.ReadAllLines("scriptures.txt");
         Random r = new Random();
         int pickline = r.Next(lines.Count());
+
+        //Splits line into parts to be applied to _reference and _words
+        string[] parts = lines[pickline].Split("|");
+        _reference = new Reference(parts[0], Int32.Parse(parts[1]), Int32.Parse(parts[2]));
+        string[] words = parts[3].Split(" ");
+        foreach (string word in words)
         {
-            string[] parts = lines[pickline].Split("|");
-            _reference = new Reference(parts[0], Int32.Parse(parts[1]), Int32.Parse(parts[2]));
-            string[] words = parts[3].Split(" ");
-            foreach (string word in words)
-            {
-                _words.Add(new Word(word));
-            }
+            _words.Add(new Word(word));
         }
+        
         
     }
 
@@ -41,7 +44,8 @@ public class Scripture
                 else {i--;}
             }
         }
-        //Hides reamining words, only used when less than three words remain shown
+        //Hides reamining words
+        //Only used when less than three words remain shown
         else
         {
             foreach(Word word in _words)
@@ -54,7 +58,8 @@ public class Scripture
         }
     }
 
-    //Counts the remaining words, only used when less than three words remain shown
+    //Counts the remaining words
+    //Only used when less than three words remain shown
     private int CountHidden()
     {
         int count = 0;
