@@ -1,32 +1,74 @@
 using System;
+using System.IO;
 
 public class Scripture
 {
     private Reference _reference;
     private List<Word> _words;
 
+    //Constructor
     public Scripture()
     {
-        _reference = new Reference();
         _words = new List<Word>();
-        string scripture = "And behold, I tell you these things that ye may learn wisdom; that ye may learn that when ye are in the service of your fellow beings ye are only in the service of your God.";
-        string[] split = scripture.Split(" ");
-        foreach (string word in split)
+        string[] lines = System.IO.File.ReadAllLines("scriptures.txt");
+        Random r = new Random();
+        int pickline = r.Next(lines.Count());
         {
-            _words.Add(new Word(word));
+            string[] parts = lines[pickline].Split("|");
+            _reference = new Reference(parts[0], Int32.Parse(parts[1]), Int32.Parse(parts[2]));
+            string[] words = parts[3].Split(" ");
+            foreach (string word in words)
+            {
+                _words.Add(new Word(word));
+            }
         }
         
     }
 
+    //Hides three words at a time, only hiding those still visible
     public void HideWords()
     {
-        for(int i = 0; i > 3; i++) 
+        Random r = new Random();
+        if (CountHidden() >= 3)
         {
-            Random r = new Random();
-            int index = r.Next(_words.Count());
-            _words[index].Hide();
+            for(int i = 0; i < 3; i++) 
+            {
+                int index = r.Next(_words.Count());
+                if(!_words[index].IsHidden())
+                {
+                    _words[index].Hide(_words[index]);
+                }
+                else {i--;}
+            }
+        }
+        //Hides reamining words, only used when less than three words remain shown
+        else
+        {
+            foreach(Word word in _words)
+            {
+                if(!word.IsHidden())
+                {
+                    word.Hide(word);
+                }
+            }
         }
     }
+
+    //Counts the remaining words, only used when less than three words remain shown
+    private int CountHidden()
+    {
+        int count = 0;
+        foreach(Word word in _words)
+        {
+            if (!word.IsHidden())
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    //Calls _reference.Display and _word.Display to output full scripture
     public void Display()
     {
         _reference.Display();
@@ -35,17 +77,22 @@ public class Scripture
             word.Display();
         }
     }
+
+    //Checks if all words are hidden
     public bool IsCompletelyHidden()
     {
-        bool end = false;
+        int counter = 0;
         foreach(Word word in _words)
         {
             if(word.IsHidden())
             {
-                end = false;
+                counter++;
             }
-            else{ end = true; }
         }
-        return end;
+        if (counter == _words.Count())
+        {
+            return false;
+        }
+        return true;
     }
 }

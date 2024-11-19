@@ -8,32 +8,23 @@ public class Word
         _word = word;
     }
 
-    public void Hide()
+    //Hides word by replacing it with _'s
+    public void Hide(Word word)
     {
         _word = new string('_', _word.Length);
-        /*int length = _word.Length;
-        string hidden = "";
-        for (int i = 0; i < length; i++)
-        {
-            hidden += "_";
-        }
-        _word = hidden;*/
     }
 
-    public string Show()
-    {
-        return _word;
-    }
-
+    //Determines if a word is hidden by checking if it starts with '_'
     public bool IsHidden()
     {
         if (_word.StartsWith("_"))
         {
             return true;
         }
-        else{ return false; }
+        return false;
     }
-
+    
+    //Displays individual words
     public void Display()
     {
         Console.Write($"{_word} ");
