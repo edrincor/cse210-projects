@@ -15,7 +15,7 @@ public class Reference
         _verse = verse;
     }
     //Second constructor so I meet the Design Requirements
-    public Reference(string book, int chapter,int verse, int endverse)
+    public Reference(string book, int chapter, int verse, int endverse)
     {
         _book = book;
         _chapter = chapter;
