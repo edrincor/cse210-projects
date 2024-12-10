@@ -1,0 +1,3 @@
+Fighter|25|5|3|8
+Sorcerer|20|4|4|4
+Rogue|20|6|5|5

@@ -7,4 +7,11 @@ public abstract class Item
     {
         _name = name;
     }
+    public string GetName()
+    {
+        return _name;
+    }
+
+    //Abstract display method
+    public abstract void Display();
 }

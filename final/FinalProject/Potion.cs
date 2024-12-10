@@ -19,4 +19,20 @@ public class Potion : Item
         }
         _amount = amount;
     }
+
+    public override void Display()
+    {
+        Console.WriteLine($"Item: {GetName()}");
+        Console.WriteLine($"Type: {_type}");
+        Console.WriteLine($"Increases by: {_amount}");
+    }
+
+    public string GetPotionType()
+    {
+        return _type;
+    }
+    public int GetAmount()
+    {
+        return _amount;
+    }
 }

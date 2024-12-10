@@ -1,18 +1,20 @@
 using System.IO;
+using System.Xml.Serialization;
 
 public class Dungeon
 {
-    private int _roomNumber = 1;
+    private int _roomNumber;
     private List<Enemy> _enemies;
     private List<Enemy> _roomEnemies = new List<Enemy>();
     private List<Item> _items;
     private List<Item> _roomItems = new List<Item>();
-    
     Random r = new Random();
 
     //Constuctor
     public Dungeon()
     {
+        _roomNumber = 1;
+
         //Creates a list of all potential enemies
         _enemies = new List<Enemy>();
         string[] lines = System.IO.File.ReadAllLines("enemies.txt");
@@ -39,6 +41,15 @@ public class Dungeon
         }
     }
 
+    public List<Enemy> GetEnemies()
+    {
+        return _roomEnemies;
+    }
+    public List<Item> GetItems()
+    {
+        return _roomItems;
+    }
+
     //Methods
     //Creates the next room
     public void GenerateRoom()
@@ -47,7 +58,6 @@ public class Dungeon
         if (inRoom == 12)
         {
             GenerateLoot();
-            
         }
         else
         {
@@ -102,7 +112,6 @@ public class Dungeon
         else if (lootType == 12)
         {
             _roomItems.Add(_items[lootType]);
-            _roomItems.Add(_items[lootType-1]);
         }
     }
 }

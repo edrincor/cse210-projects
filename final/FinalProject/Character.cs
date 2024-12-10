@@ -1,4 +1,4 @@
-public abstract class Character
+public class Character
 {
     private string _name;
     private int _maxHealth;
@@ -54,7 +54,8 @@ public abstract class Character
     {
         return _toHit + _toHitModifier;
     }
-
-
-    //Inheritable Methods
+    public int GetMaxHealth()
+    {
+        return _maxHealth;
+    }
 }
