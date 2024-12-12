@@ -14,11 +14,11 @@ public class Inventory
         }
     }
 
-    public void AddEquipment(Equipment equipment)
+    public void AddEquipment(Item equipment)
     {
         _inventory.Add(equipment);
     }
-    public void AddPotion(Potion potion)
+    public void AddPotion(Item potion)
     {
         _inventory.Add(potion);
     }

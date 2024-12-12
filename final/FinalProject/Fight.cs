@@ -3,7 +3,7 @@ public class Fight
     Random r = new Random();
 
     //Character attacking enemy
-    public void Attack(Player player, Enemy enemy)
+    public void PlayerAttack(Player player, Enemy enemy)
     {
         int attack = r.Next(1, 13);
         attack += player.GetToHit();
@@ -23,7 +23,7 @@ public class Fight
         }
     }
     //Enemy attacking character
-    public void Attack(Enemy enemy, Player player)
+    public void EnemyAttack(Enemy enemy, Player player)
     {
         Console.WriteLine($"{enemy} attacks!");
         int attack = r.Next(1, 13);

@@ -1,20 +1,20 @@
+using System.Collections;
+using System.Diagnostics;
 using System.IO;
-using System.Xml.Serialization;
 
 public class Dungeon
 {
-    private int _roomNumber;
     private List<Enemy> _enemies;
     private List<Enemy> _roomEnemies = new List<Enemy>();
     private List<Item> _items;
     private List<Item> _roomItems = new List<Item>();
+    private List<Player> _player;
+    private Inventory _inventory = new Inventory();
     Random r = new Random();
 
     //Constuctor
     public Dungeon()
     {
-        _roomNumber = 1;
-
         //Creates a list of all potential enemies
         _enemies = new List<Enemy>();
         string[] lines = System.IO.File.ReadAllLines("enemies.txt");
@@ -39,11 +39,24 @@ public class Dungeon
                 _items.Add(new Potion(parts[0], Int32.Parse(parts[1]), Int32.Parse(parts[2])));
             }
         }
+
+        //Creates a list of all potential player classes
+        _player = new List<Player>();
+        string[] lines3 = System.IO.File.ReadAllLines("classes.txt");
+        foreach (string line in lines3)
+        {
+            string[] parts = line.Split("|");
+            _player.Add(new Player(parts[0], Int32.Parse(parts[1]), Int32.Parse(parts[2]), Int32.Parse(parts[3]), Int32.Parse(parts[4])));
+        }
     }
 
-    public List<Enemy> GetEnemies()
+    public void GetEnemies()
     {
-        return _roomEnemies;
+        int counter = 1;
+        foreach (Enemy enemy in _roomEnemies)
+        {
+            Console.WriteLine($"{counter}) {enemy.GetName()}, {enemy.CurrentHealth}/{enemy.GetMaxHealth()}");
+        }
     }
     public List<Item> GetItems()
     {
@@ -51,10 +64,30 @@ public class Dungeon
     }
 
     //Methods
-    //Creates the next room
-    public void GenerateRoom()
+    //Chooses the player class
+    public Player PlayerClass(int choice)
     {
-        int inRoom = r.Next(_roomNumber, 13);
+        switch (choice)
+        {
+            case 1:
+                _inventory.AddEquipment(_items[1]);
+                _inventory.AddEquipment(_items[4]);
+                return _player[0];
+            case 2:
+                return _player[1];
+            case 3:
+                return _player[2];
+            default:
+                Console.WriteLine("That is not an option. Choosing a random class.");
+                choice = r.Next(1, 4);
+                return _player[choice];
+        }
+    }
+
+    //Creates the next room
+    public void GenerateRoom(int i)
+    {
+        int inRoom = r.Next(i, 13);
         if (inRoom == 12)
         {
             GenerateLoot();
@@ -65,10 +98,9 @@ public class Dungeon
         }
     }
 
-    //Updates and clears data for next room
+    //Clears data for next room
     public void RoomFinish()
     {
-        _roomNumber++;
         _roomEnemies.Clear();
         _roomItems.Clear();
     }

@@ -1,12 +1,20 @@
+using System.IO;
+
 public class Player : Character
 {
+    private Inventory _inventory = new Inventory();
     private string _playerClass;
     Random r = new Random();
-    public Player(string name, int maxHealth, int baseDamage, int toHit, int baseArmor, string playerClass) : base(name, maxHealth, baseDamage, toHit, baseArmor)
+    public Player(string name, int maxHealth, int baseDamage, int toHit, int baseArmor) : base(name, maxHealth, baseDamage, toHit, baseArmor)
     {
-        _playerClass = playerClass;
+        _playerClass = name;
     }
-
+    
+    public Inventory GetInventory()
+    {
+        return _inventory;
+    }
+    
     public bool CriticalHit()
     {
         if (_playerClass.ToLower() == "rogue")

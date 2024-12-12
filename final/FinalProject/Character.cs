@@ -58,4 +58,8 @@ public class Character
     {
         return _maxHealth;
     }
+    public string GetName()
+    {
+        return _name;
+    }
 }

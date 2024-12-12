@@ -16,33 +16,21 @@ public class Menu
     }
 
     //Menu used when player chooses their character
-    public int CharacterMenu()
+    public void CharacterMenu()
     {
         Console.WriteLine("Choose your class. [1, 2, or 3]");
         Console.WriteLine("1) Fighter: A simple warrior, the Fighter starts with a sword and shield.");
         Console.WriteLine("2) Sorcerer: By harnessing arcane power the Sorcerer can hit multiple enemies at once, but he has weaker armor.");
         Console.WriteLine("3) Rogue: Relying on her speed, the Rogue has an additional action and a critical hit chance.");
-
-        int choice = Int32.Parse(Console.ReadLine());
-        return choice;
     }
 
     //Menu used during player turn in combat
-    public int CombatMenu()
+    public void CombatMenu()
     {
         Console.WriteLine("Combat Actions.");
         Console.WriteLine("1) Attack an enemy!");
-        Console.WriteLine("2) Use an item.");
+        Console.WriteLine("2) Use a potion.");
         Console.WriteLine("3) Pass your turn.");
-
-        int choice = Int32.Parse(Console.ReadLine());
-        return choice;
-    }
-    public int AttackSubMenu()
-    {
-        Console.WriteLine("Which enemy would you like to attack?");
-        int choice = Int32.Parse(Console.ReadLine());
-        return choice;
     }
 
     //Menu used before generating new room
